@@ -55,7 +55,11 @@ function Search() {
                         <h4 className={cx('search-title')}>Suggests</h4>
                         <div className={cx('search-area')}>
                             {searchResult.map((result) => (
-                                <Link to={`/video/${result.id.videoId}`} key={result.id.videoId}>
+                                <Link
+                                    to={`/video/${result.id.videoId}`}
+                                    key={result.id.videoId}
+                                    onClick={() => setShowhResult(false)}
+                                >
                                     <VideoItem
                                         key={result.id.videoId}
                                         src={result.snippet.thumbnails.medium.url}
@@ -85,9 +89,9 @@ function Search() {
                         <FontAwesomeIcon icon={faCircleXmark} />
                     </button>
                 )}
-                <button className={cx('search-btn')}>
+                <Link to={`/search/${searchValue}`} className={cx('search-btn')} onClick={() => setShowhResult(false)}>
                     <FontAwesomeIcon icon={faMagnifyingGlass} />
-                </button>
+                </Link>
             </div>
         </HeadlessTippy>
     );

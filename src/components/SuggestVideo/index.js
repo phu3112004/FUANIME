@@ -13,13 +13,12 @@ function SuggestVideo({ query, type, fullWidth }) {
 
     const fetchVideos = (loadMore = false) => {
         let apiUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${config.apikey.CHANNEL_ID}&type=video&maxResults=6&key=${config.apikey.API_KEY}`;
-
         if (type === 'date') {
             apiUrl += `&order=date`;
         } else if (type === 'rating') {
             apiUrl += `&order=rating`;
         } else if (query) {
-            apiUrl += `&q=${query}`;
+            apiUrl += `&q=${query}&order=relevance`;
         }
 
         if (loadMore && pageToken) {
