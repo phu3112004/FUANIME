@@ -18,6 +18,8 @@ function Video({ isDarkMode }) {
                 setVideoDetail(data.items[0]);
             })
             .catch((error) => console.error('Error fetching video details:', error));
+
+        window.scrollTo(0, 0);
     }, [videoId]);
 
     const [buttonText, setButtonText] = useState('...Xem thêm');

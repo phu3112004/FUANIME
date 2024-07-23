@@ -11,20 +11,36 @@
     background-color: var(--dark);
     color: var(--white);
 }
-.type-btn {
-    padding: 4px 8px;
-    background-color: #aaa;
+.button-container {
+    margin: 12px 0;
+}
+.type-btn,
+.type-btn-darkmode {
+    padding: 6px 10px;
     color: var(---black);
     border-radius: 4px;
     cursor: pointer;
-    + .type-btn {
-        margin-left: 8px;
-    }
+
     &:hover {
         background-color: var(--primary-hover);
         color: #ddd;
     }
 }
+.type-btn {
+    background-color: #f2f2f2;
+
+    + .type-btn {
+        margin-left: 12px;
+    }
+}
+.type-btn-darkmode {
+    background-color: #272727;
+
+    + .type-btn-darkmode {
+        margin-left: 12px;
+    }
+}
+
 .button-click {
     background-color: var(--primary);
     color: var(--white);

@@ -35,7 +35,7 @@ function Search({ isDarkMode }) {
             return;
         }
         fetch(
-            `https://www.googleapis.com/youtube/v3/search?key=${config.apikey.API_KEY}&channelId=${config.apikey.CHANNEL_ID}&part=snippet&type=video&q=${searchValue}&maxResults=5`,
+            `https://www.googleapis.com/youtube/v3/search?key=${config.apikey.API_KEY}&channelId=${config.apikey.CHANNEL_ID}&part=snippet&type=video&videoDuration=long&q=${searchValue}&maxResults=5`,
         )
             .then((res) => res.json())
             .then((data) => {

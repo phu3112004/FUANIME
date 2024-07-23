@@ -42,13 +42,16 @@
     height: 70%;
     border-radius: 16px;
 }
-.video-info {
+.video-info,
+.video-info-darkmode {
     height: 30%;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     padding: 4px 8px;
     flex-direction: column;
+}
+.video-info {
     color: var(--black);
 }
 .video-info-darkmode {

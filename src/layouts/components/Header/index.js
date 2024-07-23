@@ -63,8 +63,8 @@ function Header({ isDarkMode, toggleDarkMode }) {
 
             <div className={cx('actions')}>
                 {!isUserLogin && (
-                    <Button onClick={login} primary rightIcon={<FontAwesomeIcon icon={faGoogle} />}>
-                        Log in with
+                    <Button onClick={login} primary>
+                        Log in with Google
                     </Button>
                 )}
                 <HeadlessTippy
