@@ -7,7 +7,7 @@ import config from '../../../config';
 import Button from '../../../components/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
-import { faSun, faMoon, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faSun, faMoon, faUser, faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import Search from '../Header/Search';
 import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
 import HeadlessTippy from '@tippyjs/react/headless';
@@ -34,6 +34,13 @@ const cx = classNames.bind(styles);
 function Header({ isDarkMode, toggleDarkMode }) {
     const [isUserLogin, setIsUserLogin] = useState(false);
     const [currentUser, setCurrentUser] = useState({});
+
+    const logout = () => {
+        localStorage.removeItem('user');
+        localStorage.removeItem('token');
+
+        window.location.href = '/';
+    };
 
     useEffect(() => {
         const token = getToken();
@@ -73,7 +80,7 @@ function Header({ isDarkMode, toggleDarkMode }) {
                                     onClick={toggleDarkMode}
                                     isDarkMode={isDarkMode}
                                 >
-                                    Giao diện: {isDarkMode ? 'Tối' : 'Sáng'}
+                                    Theme mode: {isDarkMode ? 'Light' : 'Dark'}
                                 </Button>
                                 {isUserLogin && (
                                     <Button
@@ -87,7 +94,22 @@ function Header({ isDarkMode, toggleDarkMode }) {
                                             email: currentUser.email,
                                         }}
                                     >
-                                        Xem hồ sơ
+                                        View profile
+                                    </Button>
+                                )}
+                                {isUserLogin && (
+                                    <Button
+                                        onClick={logout}
+                                        text
+                                        isDarkMode={isDarkMode}
+                                        leftIcon={<FontAwesomeIcon icon={faArrowRightFromBracket} />}
+                                        state={{
+                                            img: currentUser.picture,
+                                            name: currentUser.name,
+                                            email: currentUser.email,
+                                        }}
+                                    >
+                                        Log out
                                     </Button>
                                 )}
                             </PopperWrapper>

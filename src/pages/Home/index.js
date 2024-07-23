@@ -27,7 +27,7 @@ function Home({ isDarkMode }) {
                         handleClickButton(0);
                     }}
                 >
-                    Tất cả
+                    All
                 </button>
                 <button
                     ref={(el) => (btnRefs.current[1] = el)}
@@ -37,7 +37,7 @@ function Home({ isDarkMode }) {
                         handleClickButton(1);
                     }}
                 >
-                    Gần đây
+                    Upload date
                 </button>
                 <button
                     ref={(el) => (btnRefs.current[2] = el)}
@@ -47,7 +47,7 @@ function Home({ isDarkMode }) {
                         handleClickButton(2);
                     }}
                 >
-                    Được yêu thích
+                    Rating
                 </button>
             </div>
             <div className="video-list">

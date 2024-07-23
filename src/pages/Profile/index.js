@@ -1,6 +1,7 @@
 import classNames from 'classnames/bind';
 import styles from './Profile.module.scss';
 import { useLocation } from 'react-router-dom';
+import Image from '../../components/Image';
 
 const cx = classNames.bind(styles);
 
@@ -11,16 +12,16 @@ function Profile({ isDarkMode }) {
     return (
         <div className={isDarkMode ? cx('wrapper-darkmode') : cx('wrapper')}>
             <div className={cx('container')}>
-                {img && <img src={img} alt={name} className={cx('img')} />}
+                {img && <Image src={img} alt={name} className={cx('img')} />}
                 <div className={cx('info')}>
                     {name && (
                         <p>
-                            <b>Họ và tên:</b> {name}
+                            <b>Full name:</b> {name}
                         </p>
                     )}
                     {name && (
                         <p>
-                            <b>Địa chỉ email:</b> {email}
+                            <b>Email address:</b> {email}
                         </p>
                     )}
                 </div>

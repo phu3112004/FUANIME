@@ -5,10 +5,11 @@
 .container,
 .wrapper {
     color: var(--black);
-    min-height: 100vh;
+    min-height: calc(100vh - var(--default-layout-header-height));
 }
 .container-darkmode,
 .wrapper-darkmode {
     background-color: (--dark);
     color: var(--white);
+    min-height: calc(100vh - var(--default-layout-header-height));
 }

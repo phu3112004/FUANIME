@@ -1,10 +1,13 @@
-.wrapper {
+.wrapper,
+.wrapper-darkmode {
     padding: 16px 32px;
+    min-height: calc(100vh - var(--default-layout-header-height));
+}
+.wrapper {
     background-color: var(--white);
     color: var(--black);
 }
 .wrapper-darkmode {
-    padding: 16px 32px;
     background-color: var(--dark);
     color: var(--white);
 }
