@@ -17,7 +17,6 @@ import { useState, useEffect } from 'react';
 const login = () => {
     window.location.href = config.apikey.GET_LINK_TOKEN;
 };
-
 const getToken = () => {
     const url = new URLSearchParams(window.location.hash.substring(1));
     const token = url.get('access_token');
@@ -45,7 +44,6 @@ function Header({ isDarkMode, toggleDarkMode }) {
             });
         }
     }, []);
-
     let darkModeIcon = faSun;
     isDarkMode ? (darkModeIcon = faMoon) : (darkModeIcon = faSun);
     return (
@@ -68,7 +66,7 @@ function Header({ isDarkMode, toggleDarkMode }) {
                     duration={[200, 300]}
                     render={(attrs) => (
                         <div className="box" tabIndex="-1" {...attrs}>
-                            <PopperWrapper isDarkMode={isDarkMode}>
+                            <PopperWrapper arrow isDarkMode={isDarkMode}>
                                 <Button
                                     text
                                     leftIcon={<FontAwesomeIcon icon={darkModeIcon} />}
@@ -83,6 +81,11 @@ function Header({ isDarkMode, toggleDarkMode }) {
                                         text
                                         isDarkMode={isDarkMode}
                                         leftIcon={<FontAwesomeIcon icon={faUser} />}
+                                        state={{
+                                            img: currentUser.picture,
+                                            name: currentUser.name,
+                                            email: currentUser.email,
+                                        }}
                                     >
                                         Xem hồ sơ
                                     </Button>

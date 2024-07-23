@@ -9,6 +9,7 @@
     font-weight: 600;
     border: 1px solid transparent;
     user-select: none;
+    cursor: pointer;
 }
 .icon + .title,
 .title + .icon {
@@ -56,6 +57,7 @@
 .primary {
     background-color: var(--primary);
     color: var(--white);
+    border-radius: 8px;
     &:hover {
         background: var(--primary-hover);
         color: var((--white));

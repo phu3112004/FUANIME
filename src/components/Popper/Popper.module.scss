@@ -7,8 +7,8 @@
     padding: 8px 0;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
-
 .wrapper {
     background-color: var(--white);
     box-shadow: rgb(0 0 0 / 12%) 0px 2px 12px;
@@ -16,4 +16,21 @@
 .wrapper-darkmode {
     background-color: #222222;
     box-shadow: rgba(94, 94, 94, 0.12) 0px 2px 12px;
+}
+.arrow,
+.arrow-darkmode {
+    content: '';
+    position: absolute;
+    top: -6px;
+    right: 16px;
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+}
+.arrow {
+    border-bottom: 6px solid var(--white);
+}
+.arrow-darkmode {
+    border-bottom: 6px solid #222222;
 }

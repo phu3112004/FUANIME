@@ -1,0 +1,29 @@
+.wrapper,
+.wrapper-darkmode {
+    width: 100%;
+    min-height: calc(100vh - var(--default-layout-header-height));
+    padding: 64px;
+}
+.wrapper {
+    background-color: var(--white);
+}
+.wrapper-darkmode {
+    background-color: var(--dark);
+}
+.container {
+    width: 700px;
+    display: flex;
+    flex-direction: row;
+}
+.img {
+    width: 200px;
+    height: 200px;
+    border-radius: 9999px;
+}
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 32px;
+    font-size: 3rem;
+}
