@@ -3,7 +3,7 @@ import styles from './VideoItem.module.scss';
 
 const cx = classNames.bind(styles);
 
-function VideoItem({ src, title }) {
+function VideoItem({ src, title, isDarkMode }) {
     let cutTitle = title;
     if (cutTitle.length > 60) {
         cutTitle = cutTitle.slice(0, 57) + '...';
@@ -11,7 +11,7 @@ function VideoItem({ src, title }) {
     return (
         <div className={cx('wrapper')}>
             <img className={cx('image')} src={src} alt="thumbnails" />
-            <h2 className={cx('title')}>{cutTitle}</h2>
+            <h2 className={isDarkMode ? cx('title-darkmode') : cx('title')}>{cutTitle}</h2>
         </div>
     );
 }

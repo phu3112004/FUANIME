@@ -1,9 +1,16 @@
 .wrapper {
     padding: 16px 32px;
+    background-color: var(--white);
+    color: var(--black);
+}
+.wrapper-darkmode {
+    padding: 16px 32px;
+    background-color: var(--dark);
+    color: var(--white);
 }
 .type-btn {
     padding: 4px 8px;
-    background-color: #ddd;
+    background-color: #aaa;
     color: var(---black);
     border-radius: 4px;
     cursor: pointer;

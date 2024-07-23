@@ -1,14 +1,15 @@
 import classNames from 'classnames/bind';
 import Header from '../components/Header';
 import styles from './DefaultLayout.module.scss';
+import { useState } from 'react';
 
 const cx = classNames.bind(styles);
 
-function DefaultLayout({ children }) {
+function DefaultLayout({ children, isDarkMode, toggleDarkMode }) {
     return (
-        <div className={cx('wrapper')}>
-            <Header />
-            <div className={cx('container')}>{children}</div>
+        <div className={isDarkMode ? cx('wrapper-darkmode') : cx('wrapper')}>
+            <Header isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
+            <div className={isDarkMode ? cx('container-darkmode') : cx('container')}>{children}</div>
         </div>
     );
 }

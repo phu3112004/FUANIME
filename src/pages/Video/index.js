@@ -7,7 +7,7 @@ import SuggestVideo from '../../components/SuggestVideo';
 
 const cx = classNames.bind(styles);
 
-function Video() {
+function Video({ isDarkMode }) {
     const { videoId } = useParams();
     const [videoDetail, setVideoDetail] = useState(null);
 
@@ -30,7 +30,7 @@ function Video() {
 
     if (!videoDetail) return <div>Loading...</div>;
     return (
-        <div className={cx('wrapper')}>
+        <div className={isDarkMode ? cx('wrapper-darkmode') : cx('wrapper')}>
             <div className={cx('video-area')}>
                 <iframe
                     className={cx('video-iframe')}
@@ -40,7 +40,10 @@ function Video() {
                     allowFullScreen
                 ></iframe>
                 <h1 className={cx('video-title')}>{videoDetail.snippet.title}</h1>
-                <div style={{ height: parentHeight }} className={cx('video-description')}>
+                <div
+                    style={{ height: parentHeight }}
+                    className={isDarkMode ? cx('video-description-darkmode') : cx('video-description')}
+                >
                     <p>
                         <b>Đăng vào lúc: </b>
                         {videoDetail.snippet.publishedAt.slice(0, 10)}
@@ -53,7 +56,7 @@ function Video() {
                 </div>
             </div>
             <div className={cx('suggest-video-area')}>
-                <SuggestVideo query={videoDetail.snippet.title.slice(0, 6)} fullWidth />
+                <SuggestVideo query={videoDetail.snippet.title.slice(0, 6)} fullWidth isDarkMode={isDarkMode} />
             </div>
         </div>
     );

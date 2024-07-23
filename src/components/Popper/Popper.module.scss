@@ -1,11 +1,19 @@
-.wrapper {
+.wrapper,
+.wrapper-darkmode {
     width: 100%;
     max-height: min((100vh - 96px) - 60px, 734px);
-    min-height: 100px;
-    background-color: var(--white);
-    box-shadow: rgb(0 0 0 / 12%) 0px 2px 12px;
+    min-height: 50px;
     border-radius: 8px;
-    padding-top: 8px;
+    padding: 8px 0;
     display: flex;
     flex-direction: column;
+}
+
+.wrapper {
+    background-color: var(--white);
+    box-shadow: rgb(0 0 0 / 12%) 0px 2px 12px;
+}
+.wrapper-darkmode {
+    background-color: #222222;
+    box-shadow: rgba(94, 94, 94, 0.12) 0px 2px 12px;
 }

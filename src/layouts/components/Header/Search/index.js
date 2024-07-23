@@ -13,7 +13,7 @@ import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
-function Search() {
+function Search({ isDarkMode }) {
     const [searchResult, setSearchResult] = useState([]);
     const [searchValue, setSearchValue] = useState('');
     const [showResult, setShowhResult] = useState(true);
@@ -51,7 +51,7 @@ function Search() {
             placement="bottom"
             render={(attrs) => (
                 <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-                    <PopperWrapper>
+                    <PopperWrapper isDarkMode={isDarkMode}>
                         <h4 className={cx('search-title')}>Suggests</h4>
                         <div className={cx('search-area')}>
                             {searchResult.map((result) => (
@@ -61,6 +61,7 @@ function Search() {
                                     onClick={() => setShowhResult(false)}
                                 >
                                     <VideoItem
+                                        isDarkMode={isDarkMode}
                                         key={result.id.videoId}
                                         src={result.snippet.thumbnails.medium.url}
                                         title={result.snippet.title}
@@ -75,21 +76,28 @@ function Search() {
                 setShowhResult(false);
             }}
         >
-            <div className={cx('wrapper')}>
+            <div className={isDarkMode ? cx('wrapper-darkmode') : cx('wrapper')}>
                 <input
                     ref={inputValueRef}
                     spellCheck="false"
-                    className={cx('input')}
+                    className={isDarkMode ? cx('input-darkmode') : cx('input')}
                     placeholder="Search videos..."
                     onChange={(e) => handleChangeValue(e.target.value)}
                     onFocus={() => setShowhResult(true)}
                 />
                 {searchValue !== '' && (
-                    <button className={cx('clear-btn')} onClick={handleClearValue}>
+                    <button
+                        className={isDarkMode ? cx('clear-btn-darkmode') : cx('clear-btn')}
+                        onClick={handleClearValue}
+                    >
                         <FontAwesomeIcon icon={faCircleXmark} />
                     </button>
                 )}
-                <Link to={`/search/${searchValue}`} className={cx('search-btn')} onClick={() => setShowhResult(false)}>
+                <Link
+                    to={`/search/${searchValue}`}
+                    className={isDarkMode ? cx('search-btn-darkmode') : cx('search-btn')}
+                    onClick={() => setShowhResult(false)}
+                >
                     <FontAwesomeIcon icon={faMagnifyingGlass} />
                 </Link>
             </div>

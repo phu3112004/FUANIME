@@ -1,4 +1,5 @@
-.wrapper {
+.wrapper,
+.wrapper-darkmode {
     width: 100%;
     height: var(--default-layout-header-height);
     background-color: var(--white);
@@ -13,7 +14,10 @@
     right: 0;
     z-index: 10;
 }
-
+.wrapper-darkmode {
+    background-color: var(--dark);
+    color: var(--white);
+}
 .logo {
     width: 140px;
     height: calc(var(--default-layout-header-height) - 8px);
@@ -22,4 +26,40 @@
 .logo-img {
     width: 100%;
     height: 100%;
+}
+//dark-text
+.darkmodeText {
+    color: var(--white);
+}
+//action
+.actions {
+    display: inline-flex;
+    height: 100%;
+    padding: 8px 0;
+}
+.setting {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.setting-user {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.setting-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 9999px;
+    margin-right: 8px;
+}
+.setting-icon {
+    display: flex;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    background-color: transparent;
 }

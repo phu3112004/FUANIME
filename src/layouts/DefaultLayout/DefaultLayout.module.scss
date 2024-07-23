@@ -1,3 +1,14 @@
-.container {
+.container,
+.container-darkmode {
     margin-top: var(--default-layout-header-height);
+}
+.container,
+.wrapper {
+    color: var(--black);
+    min-height: 100vh;
+}
+.container-darkmode,
+.wrapper-darkmode {
+    background-color: (--dark);
+    color: var(--white);
 }

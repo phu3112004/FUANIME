@@ -1,9 +1,14 @@
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { publicRoutes } from './routes';
 import { DefaultLayout } from './layouts';
 
 function App() {
+    const [isDarkMode, setIsDarkMode] = useState(false);
+
+    const toggleDarkMode = () => {
+        setIsDarkMode(!isDarkMode);
+    };
     return (
         <BrowserRouter>
             <div className="App">
@@ -23,8 +28,8 @@ function App() {
                                 key={index}
                                 path={route.path}
                                 element={
-                                    <Layout>
-                                        <Page />
+                                    <Layout isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode}>
+                                        <Page isDarkMode={isDarkMode} />
                                     </Layout>
                                 }
                             />

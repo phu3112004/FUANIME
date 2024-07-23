@@ -5,12 +5,12 @@ import styles from './Search.module.scss';
 
 const cx = classNames.bind(styles);
 
-function Search() {
+function Search({ isDarkMode }) {
     const { query } = useParams();
 
     return (
-        <div className={cx('wrapper')}>
-            <SuggestVideo query={query} />
+        <div className={isDarkMode ? cx('wrapper-darkmode') : cx('wrapper')}>
+            <SuggestVideo query={query} searchPage isDarkMode={isDarkMode} />
         </div>
     );
 }

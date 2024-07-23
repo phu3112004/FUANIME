@@ -6,7 +6,7 @@ import config from '../../config';
 
 const cx = classNames.bind(styles);
 
-function SuggestVideo({ query, type, fullWidth }) {
+function SuggestVideo({ query, type, fullWidth, searchPage, isDarkMode }) {
     const [videos, setVideos] = useState([]);
     const [loading, setLoading] = useState(true);
     const [pageToken, setPageToken] = useState(null);
@@ -58,15 +58,21 @@ function SuggestVideo({ query, type, fullWidth }) {
             {videos.length > 0 ? (
                 <ul className={cx('video-list')}>
                     {videos.map((video) => (
-                        <li key={video.id.videoId || video.id} className={cx('video-item', { fullWidth })}>
+                        <li
+                            key={video.id.videoId || video.id}
+                            className={
+                                isDarkMode ? cx('video-item-darkmode', { fullWidth }) : cx('video-item', { fullWidth })
+                            }
+                        >
                             <Link to={`/video/${video.id.videoId || video.id}`}>
                                 <img
                                     src={video.snippet.thumbnails.medium.url}
                                     alt={video.snippet.title}
                                     className={cx('thumbnail')}
                                 />
-                                <div className={cx('video-info')}>
+                                <div className={isDarkMode ? cx('video-info-darkmode') : cx('video-info')}>
                                     <h4 className={cx('title')}>{video.snippet.title}</h4>
+                                    {searchPage && <p className={cx('des')}>{video.snippet.description}</p>}
                                 </div>
                             </Link>
                         </li>

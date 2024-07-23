@@ -1,5 +1,12 @@
-.wrapper {
+.wrapper,
+.wrapper-darkmode {
     display: flex;
     flex-wrap: wrap;
     padding: 16px 32px;
+}
+.wrapper {
+    background-color: var(--white);
+}
+.wrapper-darkmode {
+    background-color: var(--dark);
 }

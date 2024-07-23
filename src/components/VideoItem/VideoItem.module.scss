@@ -6,16 +6,24 @@
     padding: 8px;
     cursor: pointer;
     &:hover {
-        background-color: #ddd;
+        background-color: #bdbdbd;
     }
 }
 .image {
     width: 25%;
     height: 100%;
 }
-.title {
+.title,
+.title-darkmode {
     width: 75%;
     height: 100%;
     font-size: 1.6rem;
     margin-left: 4px;
+}
+
+.title {
+    color: var(--black);
+}
+.title-darkmode {
+    color: var(--white);
 }

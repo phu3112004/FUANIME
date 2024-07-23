@@ -8,6 +8,7 @@
     --white: white;
     --primary: #cf3339;
     --primary-hover: #ae272b;
+    --dark: #0f0f0f;
 }
 
 html {
@@ -49,7 +50,6 @@ input,
     border: none;
 }
 a[href] {
-    color: var(--black);
     text-decoration: none;
 }
 

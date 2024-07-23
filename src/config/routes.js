@@ -1,7 +1,7 @@
 const routes = {
     home: '/',
     video: '/video/:videoId',
-    profile: '/:name',
+    profile: '/profile/:name',
     search: '/search/:query',
     errorSearch: '/search',
 };

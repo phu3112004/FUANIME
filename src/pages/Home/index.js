@@ -1,11 +1,11 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import classNames from 'classnames/bind';
 import styles from './Home.module.scss';
 import SuggestVideo from '../../components/SuggestVideo';
 
 const cx = classNames.bind(styles);
 
-function Home() {
+function Home({ isDarkMode }) {
     const [type, setType] = useState('all');
     const btnRefs = useRef([]);
 
@@ -16,9 +16,8 @@ function Home() {
             }
         });
     };
-
     return (
-        <div className={cx('wrapper')}>
+        <div className={isDarkMode ? cx('wrapper-darkmode') : cx('wrapper')}>
             <div>
                 <button
                     ref={(el) => (btnRefs.current[0] = el)}
@@ -52,7 +51,7 @@ function Home() {
                 </button>
             </div>
             <div className="video-list">
-                <SuggestVideo type={type} />
+                <SuggestVideo type={type} isDarkMode={isDarkMode} />
             </div>
         </div>
     );

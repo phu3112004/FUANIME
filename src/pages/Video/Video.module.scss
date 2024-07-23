@@ -1,12 +1,18 @@
-.wrapper {
+.wrapper,
+.wrapper-darkmode {
     display: flex;
     flex-direction: row;
     width: 100%;
 }
+.wrapper {
+    background-color: var(--white);
+}
+.wrapper-darkmode {
+    background-color: var(--dark);
+}
 //video
 .video-area {
     width: 65%;
-    background-color: var(--white);
     padding: 16px;
     display: flex;
     flex-direction: column;
@@ -21,12 +27,19 @@
     margin: 16px 0;
     font-size: 2.4rem;
 }
-.video-description {
-    background-color: #ddd;
+
+.video-description,
+.video-description-darkmode {
     padding: 16px;
     border-radius: 16px;
     overflow: hidden;
     position: relative;
+}
+.video-description {
+    background-color: #dddd;
+}
+.video-description-darkmode {
+    background-color: #333333;
 }
 .more-btn {
     position: absolute;

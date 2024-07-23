@@ -10,13 +10,12 @@ function Button({
     onClick,
     children,
     primary = false,
-    outline = false,
     text = false,
-    rounded = false,
     small = false,
     large = false,
     leftIcon,
     rightIcon,
+    isDarkMode,
     ...passProps
 }) {
     let Comp = 'button';
@@ -32,14 +31,19 @@ function Button({
         Comp = 'a';
     }
 
-    const classes = cx('wrapper', {
-        primary,
-        outline,
-        text,
-        rounded,
-        small,
-        large,
-    });
+    const classes = isDarkMode
+        ? cx('wrapper-darkmode', {
+              primary,
+              text,
+              small,
+              large,
+          })
+        : cx('wrapper', {
+              primary,
+              text,
+              small,
+              large,
+          });
     return (
         <Comp className={classes} {...props}>
             {leftIcon && <span className={cx('icon')}>{leftIcon}</span>}
