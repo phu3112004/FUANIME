@@ -9,7 +9,7 @@ import { faCircleXmark, faMagnifyingGlass } from '@fortawesome/free-solid-svg-ic
 import config from '../../../../config';
 import { useDebounce } from '../../../../hooks';
 import VideoItem from '../../../../components/VideoItem';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
@@ -18,6 +18,7 @@ function Search({ isDarkMode }) {
     const [searchValue, setSearchValue] = useState('');
     const [showResult, setShowhResult] = useState(true);
     const inputValueRef = useRef();
+    const navigate = useNavigate();
     const debounced = useDebounce(searchValue, 500);
 
     const handleChangeValue = (e) => {
@@ -27,6 +28,15 @@ function Search({ isDarkMode }) {
         setSearchValue('');
         inputValueRef.current.value = '';
         inputValueRef.current.focus();
+    };
+
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            if (searchValue.trim()) {
+                navigate(`/search/${searchValue}`);
+                setShowhResult(false);
+            }
+        }
     };
 
     useEffect(() => {
@@ -84,6 +94,7 @@ function Search({ isDarkMode }) {
                     placeholder="Search videos..."
                     onChange={(e) => handleChangeValue(e.target.value)}
                     onFocus={() => setShowhResult(true)}
+                    onKeyDown={(e) => handleKeyDown(e)}
                 />
                 {searchValue !== '' && (
                     <button
