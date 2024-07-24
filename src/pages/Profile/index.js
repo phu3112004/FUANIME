@@ -8,7 +8,6 @@ const cx = classNames.bind(styles);
 function Profile({ isDarkMode }) {
     const location = useLocation();
     const { img, name, email } = location.state || {};
-    console.log({ img, name, email });
     return (
         <div className={isDarkMode ? cx('wrapper-darkmode') : cx('wrapper')}>
             <div className={cx('container')}>
