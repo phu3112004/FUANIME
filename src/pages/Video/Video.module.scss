@@ -55,7 +55,65 @@
         background-color: var(--primary-hover);
     }
 }
+.video-cmt {
+    margin-top: 32px;
+}
+.cmt-type {
+    min-height: 76px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 16px 0;
+}
+.cmt-type-img {
+    width: 76px;
+    max-width: 10%;
+}
+.cmt-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 9999px;
+}
 
+.cmt-type-form-list,
+.cmt-type-form {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+}
+.cmt-type-form {
+    justify-content: space-between;
+
+    Button {
+        min-height: 45%;
+        max-width: 100px;
+        align-self: flex-end;
+    }
+}
+.cmt-input,
+.cmt-input-darkmode {
+    min-height: 50%;
+    padding: 8px 0;
+    background-color: transparent;
+    border-bottom: 1px #eee solid;
+}
+.cmt-input-darkmode {
+    color: var(--white);
+}
+
+.cmt-type-form-list {
+    justify-content: flex-start;
+}
+.cmt-info {
+    display: flex;
+    align-items: baseline;
+
+    p {
+        margin-left: 8px;
+        font-size: 12px;
+    }
+}
 //vido suggest
 .suggest-video-area {
     width: 35%;

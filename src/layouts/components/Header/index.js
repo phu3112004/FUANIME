@@ -1,58 +1,26 @@
+import { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
-import { Link } from 'react-router-dom';
+import AuthContext from '../../../components/AuthContext';
 import images from '../../../assest/images';
 import Image from '../../../components/Image';
 import config from '../../../config';
 import Button from '../../../components/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGoogle } from '@fortawesome/free-brands-svg-icons';
-import { faSun, faMoon, faUser, faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
-import Search from '../Header/Search';
-import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
+import { faSun, faMoon, faUser, faArrowRightFromBracket, faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
 import HeadlessTippy from '@tippyjs/react/headless';
 import { Wrapper as PopperWrapper } from '../../../components/Popper';
-import { useState, useEffect } from 'react';
-
-const login = () => {
-    window.location.href = config.apikey.GET_LINK_TOKEN;
-};
-const getToken = () => {
-    const url = new URLSearchParams(window.location.hash.substring(1));
-    const token = url.get('access_token');
-    return token;
-};
-const getUserInfo = async () => {
-    const access_token = getToken();
-    const res = await fetch(`https://www.googleapis.com/oauth2/v3/userinfo?access_token=${access_token}`);
-    const data = await res.json();
-    return data;
-};
+import Search from '../Header/Search';
 
 const cx = classNames.bind(styles);
 
 function Header({ isDarkMode, toggleDarkMode }) {
-    const [isUserLogin, setIsUserLogin] = useState(false);
-    const [currentUser, setCurrentUser] = useState({});
+    const { currentUser, login, logout } = useContext(AuthContext);
 
-    const logout = () => {
-        localStorage.removeItem('user');
-        localStorage.removeItem('token');
-
-        window.location.href = '/';
-    };
-
-    useEffect(() => {
-        const token = getToken();
-        if (token) {
-            getUserInfo(token).then((data) => {
-                setCurrentUser(data);
-                setIsUserLogin(true);
-            });
-        }
-    }, []);
     let darkModeIcon = faSun;
     isDarkMode ? (darkModeIcon = faMoon) : (darkModeIcon = faSun);
+
     return (
         <header className={isDarkMode ? cx('wrapper-darkmode') : cx('wrapper')}>
             <Link to={config.routes.home} className={cx('logo')}>
@@ -62,7 +30,7 @@ function Header({ isDarkMode, toggleDarkMode }) {
             <Search isDarkMode={isDarkMode} />
 
             <div className={cx('actions')}>
-                {!isUserLogin && (
+                {!currentUser && (
                     <Button onClick={login} primary>
                         Log in with Google
                     </Button>
@@ -82,42 +50,37 @@ function Header({ isDarkMode, toggleDarkMode }) {
                                 >
                                     Theme mode: {isDarkMode ? 'Light' : 'Dark'}
                                 </Button>
-                                {isUserLogin && (
-                                    <Button
-                                        to={`/profile/${currentUser.email}`}
-                                        text
-                                        isDarkMode={isDarkMode}
-                                        leftIcon={<FontAwesomeIcon icon={faUser} />}
-                                        state={{
-                                            img: currentUser.picture,
-                                            name: currentUser.name,
-                                            email: currentUser.email,
-                                        }}
-                                    >
-                                        View profile
-                                    </Button>
-                                )}
-                                {isUserLogin && (
-                                    <Button
-                                        onClick={logout}
-                                        text
-                                        isDarkMode={isDarkMode}
-                                        leftIcon={<FontAwesomeIcon icon={faArrowRightFromBracket} />}
-                                        state={{
-                                            img: currentUser.picture,
-                                            name: currentUser.name,
-                                            email: currentUser.email,
-                                        }}
-                                    >
-                                        Log out
-                                    </Button>
+                                {currentUser && (
+                                    <>
+                                        <Button
+                                            to={`/profile/${currentUser.sub}`}
+                                            text
+                                            isDarkMode={isDarkMode}
+                                            leftIcon={<FontAwesomeIcon icon={faUser} />}
+                                        >
+                                            View profile
+                                        </Button>
+                                        <Button
+                                            onClick={logout}
+                                            text
+                                            isDarkMode={isDarkMode}
+                                            leftIcon={<FontAwesomeIcon icon={faArrowRightFromBracket} />}
+                                            state={{
+                                                img: currentUser.picture,
+                                                name: currentUser.name,
+                                                email: currentUser.email,
+                                            }}
+                                        >
+                                            Log out
+                                        </Button>
+                                    </>
                                 )}
                             </PopperWrapper>
                         </div>
                     )}
                 >
                     <div className={cx('setting')}>
-                        {isUserLogin ? (
+                        {currentUser ? (
                             <span className={cx('setting-user')}>
                                 <Image src={currentUser.picture} className={cx('setting-img')} />
                                 <h4>{currentUser.name}</h4>
