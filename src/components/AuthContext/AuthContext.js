@@ -34,7 +34,8 @@ export const AuthProvider = ({ children }) => {
         localStorage.removeItem('user');
         localStorage.removeItem('token');
         setCurrentUser(null);
-        window.location.href = '/';
+        window.history.replaceState(null, null, '/');
+        window.location.reload();
     };
 
     useEffect(() => {
