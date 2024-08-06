@@ -1,70 +1,105 @@
-# Getting Started with Create React App
+# FUANIME
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+FUANIME is a web application designed to help users search and watch anime videos. It uses a custom-built API to fetch and display video content.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **User Authentication**: Users can log in and log out using OAuth2 authentication.
+- **Video Search**: Search for anime videos using keywords.
+- **Video Playback**: Watch videos directly on the platform.
+- **Suggested Videos**: Get video suggestions based on the current video being watched.
+- **Load More Videos**: Load more videos as you scroll down the page.
+- **Light Mode & Dark Mode**: Able to change to meet user preferences.
 
-### `npm start`
+## Technologies Used
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Frontend**: React.js, React Router, SCSS, HTML, Javascript
+- **Backend**: None (API provided externally)
+- **Authentication**: OAuth2
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Installation
 
-### `npm test`
+### Prerequisites
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Node.js
+- npm or yarn
 
-### `npm run build`
+### Frontend Setup
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Clone the repository:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    ```bash
+    git clone https://github.com/phu3112004/fuanime.git
+    ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. Navigate to the project directory:
 
-### `npm run eject`
+    ```bash
+    cd fuanime
+    ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+3. Install the dependencies:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    ```bash
+    npm install
+    ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+4. Update the API configuration in `src/config/apikeys.js` with your API server URL.
+  ```
+   const CLIENT_ID = get by OAuth2;
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+   const apikey = {
+    API_KEY: //get by using YouTube Data API v3 on Google Cloud,
+    CHANNEL_ID: //any Anime Youtube channel id you want,
+    GET_LINK_TOKEN = "https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/userinfo.email%20https://www.googleapis.com/auth/userinfo.profile&response_type=token&redirect_uri=http://localhost:3000/&client_id=${CLIENT_ID}"
+   }
 
-## Learn More
+export default apikey;
+```
+5. Start the frontend server:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+    ```bash
+    npm start
+    ```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Usage
 
-### Code Splitting
+1. Open your browser and navigate to `http://localhost:3000`.
+2. Log in using the OAuth2 authentication method.
+3. Use the search bar to find anime videos.
+4. Click on a video to watch it.
+5. Explore suggested videos and load more content as you scroll.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## API Documentation
 
-### Analyzing the Bundle Size
+The FUANIME API provides endpoints for fetching video data, user authentication, and more.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Authentication
 
-### Making a Progressive Web App
+- **GET /auth/login**: Redirects to the OAuth2 login page.
+- **GET /auth/callback**: Handles the OAuth2 callback and retrieves the access token.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Videos
 
-### Advanced Configuration
+- **GET /api/videos**: Fetch a list of videos. Supports query parameters for searching and pagination.
+- **GET /api/videos/:id**: Fetch details of a specific video.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Contributing
 
-### Deployment
+We welcome contributions from the community! Please follow these steps to contribute:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+1. Fork the repository.
+2. Create a new branch for your feature or bugfix.
+3. Commit your changes and push the branch to your fork.
+4. Create a pull request with a detailed description of your changes.
 
-### `npm run build` fails to minify
+## License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+
+## Contact
+
+If you have any questions or suggestions, please feel free to contact us at 22521105@gm.uit.edu.vn.
+
+## Video Demo
+
