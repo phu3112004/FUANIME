@@ -102,5 +102,5 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 If you have any questions or suggestions, please feel free to contact us at 22521105@gm.uit.edu.vn.
 
 ## Video Demo
-[https://drive.google.com/file/d/1K3FgGDeIz3Paf7goxYIEj5CJ_icxaDjO/view?usp=drive_link](https://drive.google.com/file/d/1K3FgGDeIz3Paf7goxYIEj5CJ_icxaDjO/view?usp=drive_link)
+[Link to video](https://drive.google.com/file/d/1K3FgGDeIz3Paf7goxYIEj5CJ_icxaDjO/view?usp=drive_link)
 
