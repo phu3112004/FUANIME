@@ -57,6 +57,11 @@ function Header({ isDarkMode, toggleDarkMode }) {
                                             text
                                             isDarkMode={isDarkMode}
                                             leftIcon={<FontAwesomeIcon icon={faUser} />}
+                                            state={{
+                                                img: currentUser.picture,
+                                                name: currentUser.name,
+                                                email: currentUser.email,
+                                            }}
                                         >
                                             View profile
                                         </Button>
@@ -65,11 +70,6 @@ function Header({ isDarkMode, toggleDarkMode }) {
                                             text
                                             isDarkMode={isDarkMode}
                                             leftIcon={<FontAwesomeIcon icon={faArrowRightFromBracket} />}
-                                            state={{
-                                                img: currentUser.picture,
-                                                name: currentUser.name,
-                                                email: currentUser.email,
-                                            }}
                                         >
                                             Log out
                                         </Button>
