@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useCallback, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
@@ -15,11 +15,63 @@ import Search from '../Header/Search';
 
 const cx = classNames.bind(styles);
 
-function Header({ isDarkMode, toggleDarkMode }) {
+const Header = ({ isDarkMode, toggleDarkMode }) => {
     const { currentUser, login, logout } = useContext(AuthContext);
 
-    let darkModeIcon = faSun;
-    isDarkMode ? (darkModeIcon = faMoon) : (darkModeIcon = faSun);
+    const darkModeIcon = useMemo(() => (isDarkMode ? faMoon : faSun), [isDarkMode]);
+
+    const handleToggleDarkMode = useCallback(() => {
+        toggleDarkMode();
+    }, [toggleDarkMode]);
+
+    const handleLogin = useCallback(() => {
+        login();
+    }, [login]);
+
+    const handleLogout = useCallback(() => {
+        logout();
+    }, [logout]);
+
+    const tippyContent = useMemo(
+        () => (
+            <PopperWrapper arrow isDarkMode={isDarkMode}>
+                <Button
+                    text
+                    leftIcon={<FontAwesomeIcon icon={darkModeIcon} />}
+                    onClick={handleToggleDarkMode}
+                    isDarkMode={isDarkMode}
+                >
+                    Theme mode: {isDarkMode ? 'Light' : 'Dark'}
+                </Button>
+                {currentUser && (
+                    <>
+                        <Button
+                            to={`/profile/${currentUser.sub}`}
+                            text
+                            isDarkMode={isDarkMode}
+                            leftIcon={<FontAwesomeIcon icon={faUser} />}
+                            state={{
+                                img: currentUser.picture,
+                                name: currentUser.name,
+                                email: currentUser.email,
+                            }}
+                        >
+                            View profile
+                        </Button>
+                        <Button
+                            onClick={handleLogout}
+                            text
+                            isDarkMode={isDarkMode}
+                            leftIcon={<FontAwesomeIcon icon={faArrowRightFromBracket} />}
+                        >
+                            Log out
+                        </Button>
+                    </>
+                )}
+            </PopperWrapper>
+        ),
+        [darkModeIcon, isDarkMode, currentUser, handleToggleDarkMode, handleLogout],
+    );
 
     return (
         <header className={isDarkMode ? cx('wrapper-darkmode') : cx('wrapper')}>
@@ -31,7 +83,7 @@ function Header({ isDarkMode, toggleDarkMode }) {
 
             <div className={cx('actions')}>
                 {!currentUser && (
-                    <Button onClick={login} primary>
+                    <Button onClick={handleLogin} primary>
                         Log in with Google
                     </Button>
                 )}
@@ -41,41 +93,7 @@ function Header({ isDarkMode, toggleDarkMode }) {
                     duration={[200, 300]}
                     render={(attrs) => (
                         <div className="box" tabIndex="-1" {...attrs}>
-                            <PopperWrapper arrow isDarkMode={isDarkMode}>
-                                <Button
-                                    text
-                                    leftIcon={<FontAwesomeIcon icon={darkModeIcon} />}
-                                    onClick={toggleDarkMode}
-                                    isDarkMode={isDarkMode}
-                                >
-                                    Theme mode: {isDarkMode ? 'Light' : 'Dark'}
-                                </Button>
-                                {currentUser && (
-                                    <>
-                                        <Button
-                                            to={`/profile/${currentUser.sub}`}
-                                            text
-                                            isDarkMode={isDarkMode}
-                                            leftIcon={<FontAwesomeIcon icon={faUser} />}
-                                            state={{
-                                                img: currentUser.picture,
-                                                name: currentUser.name,
-                                                email: currentUser.email,
-                                            }}
-                                        >
-                                            View profile
-                                        </Button>
-                                        <Button
-                                            onClick={logout}
-                                            text
-                                            isDarkMode={isDarkMode}
-                                            leftIcon={<FontAwesomeIcon icon={faArrowRightFromBracket} />}
-                                        >
-                                            Log out
-                                        </Button>
-                                    </>
-                                )}
-                            </PopperWrapper>
+                            {tippyContent}
                         </div>
                     )}
                 >
@@ -95,6 +113,6 @@ function Header({ isDarkMode, toggleDarkMode }) {
             </div>
         </header>
     );
-}
+};
 
 export default Header;

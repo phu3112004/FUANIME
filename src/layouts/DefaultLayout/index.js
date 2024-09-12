@@ -1,7 +1,6 @@
 import classNames from 'classnames/bind';
 import Header from '../components/Header';
 import styles from './DefaultLayout.module.scss';
-import { useState } from 'react';
 
 const cx = classNames.bind(styles);
 

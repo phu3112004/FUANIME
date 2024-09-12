@@ -10,6 +10,7 @@ function App() {
     const toggleDarkMode = () => {
         setIsDarkMode(!isDarkMode);
     };
+
     return (
         <AuthProvider>
             <BrowserRouter>

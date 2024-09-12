@@ -55,7 +55,6 @@ function SuggestVideo({ query, type, fullWidth, searchPage, isDarkMode }) {
     if (query) title = 'Related Videos';
     else if (type === 'date') title = 'Recent Videos';
     else if (type === 'rating') title = 'Popular Videos';
-
     return (
         <div className={cx('suggested-videos')}>
             <h3>{title}</h3>
