@@ -41,7 +41,7 @@ const Header = ({ isDarkMode, toggleDarkMode }) => {
                     onClick={handleToggleDarkMode}
                     isDarkMode={isDarkMode}
                 >
-                    Theme mode: {isDarkMode ? 'Light' : 'Dark'}
+                    Theme mode: {isDarkMode ? 'Dark' : 'Light'}
                 </Button>
                 {currentUser && (
                     <>
