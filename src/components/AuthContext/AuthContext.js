@@ -43,12 +43,18 @@ export const AuthProvider = ({ children }) => {
         if (token && !currentUser) {
             getUserInfo(token)
                 .then((data) => {
-                    setCurrentUser(data);
-                    localStorage.setItem('user', JSON.stringify(data));
+                    if (data && data.sub) {
+                        // Kiểm tra nếu thông tin người dùng hợp lệ
+                        setCurrentUser(data);
+                        localStorage.setItem('user', JSON.stringify(data));
+                    } else {
+                        console.error('Invalid user data');
+                        logout(); // Đăng xuất nếu thông tin không hợp lệ
+                    }
                 })
                 .catch((error) => {
                     console.error('Failed to fetch user info:', error);
-                    logout();
+                    logout(); // Đăng xuất nếu có lỗi xảy ra
                 });
         }
     }, [currentUser]);

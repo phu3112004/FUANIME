@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
 import styles from './SuggestVideo.module.scss';
@@ -11,43 +11,47 @@ function SuggestVideo({ query, type, fullWidth, searchPage, isDarkMode }) {
     const [loading, setLoading] = useState(true);
     const [pageToken, setPageToken] = useState(null);
 
-    const fetchVideos = (loadMore = false) => {
-        let apiUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&videoDuration=long&maxResults=6&channelId=${config.apikey.CHANNEL_ID}&key=${config.apikey.API_KEY}`;
-        if (type === 'date') {
-            apiUrl += `&order=date`;
-        } else if (type === 'rating') {
-            apiUrl += `&order=rating`;
-        } else if (query) {
-            apiUrl += `&q=${query}`;
-        } else if (type && !query) {
-            apiUrl += `&q=${type}`;
-        }
+    const fetchVideos = useCallback(
+        (loadMore = false) => {
+            console.log('goi tao sgv');
+            let apiUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&videoDuration=long&maxResults=6&channelId=${config.apikey.CHANNEL_ID}&key=${config.apikey.API_KEY}`;
+            if (type === 'date') {
+                apiUrl += `&order=date`;
+            } else if (type === 'rating') {
+                apiUrl += `&order=rating`;
+            } else if (query) {
+                apiUrl += `&q=${query}`;
+            } else if (type && !query) {
+                apiUrl += `&q=${type}`;
+            }
 
-        if (loadMore && pageToken) {
-            apiUrl += `&pageToken=${pageToken}`;
-        }
+            if (loadMore && pageToken) {
+                apiUrl += `&pageToken=${pageToken}`;
+            }
 
-        setLoading(true);
-        fetch(apiUrl)
-            .then((response) => response.json())
-            .then((data) => {
-                if (data.items) {
-                    setVideos((prevVideos) => (loadMore ? [...prevVideos, ...data.items] : data.items));
-                    setPageToken(data.nextPageToken);
-                } else {
-                    setVideos([]);
-                }
-                setLoading(false);
-            })
-            .catch((error) => {
-                console.error('Error fetching videos:', error);
-                setLoading(false);
-            });
-    };
+            setLoading(true);
+            fetch(apiUrl)
+                .then((response) => response.json())
+                .then((data) => {
+                    if (data.items) {
+                        setVideos((prevVideos) => (loadMore ? [...prevVideos, ...data.items] : data.items));
+                        setPageToken(data.nextPageToken);
+                    } else {
+                        setVideos([]);
+                    }
+                    setLoading(false);
+                })
+                .catch((error) => {
+                    console.error('Error fetching videos:', error);
+                    setLoading(false);
+                });
+        },
+        [query, type, pageToken],
+    );
 
     useEffect(() => {
         fetchVideos();
-    }, [type, query]);
+    }, [fetchVideos]);
 
     if (loading && videos.length === 0) return <div>Loading suggest video...</div>;
 

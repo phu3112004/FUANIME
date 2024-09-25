@@ -22,7 +22,10 @@ function Video({ isDarkMode }) {
             .then((data) => {
                 setVideoDetail(data.items[0]);
             })
-            .catch((error) => console.error('Error fetching video details:', error));
+            .catch((error) => {
+                console.error('Error fetching video details:', error);
+                setVideoDetail(null);
+            });
 
         window.scrollTo(0, 0);
     }, [videoId]);
