@@ -13,7 +13,6 @@ function SuggestVideo({ query, type, fullWidth, searchPage, isDarkMode }) {
 
     const fetchVideos = useCallback(
         (loadMore = false) => {
-            console.log('goi tao sgv');
             let apiUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&videoDuration=long&maxResults=6&channelId=${config.apikey.CHANNEL_ID}&key=${config.apikey.API_KEY}`;
             if (type === 'date') {
                 apiUrl += `&order=date`;
