@@ -98,5 +98,5 @@ Welcome contributions from the community! Please follow these steps to contribut
 If you have any questions or suggestions, please feel free to contact me at 22521105@gm.uit.edu.vn.
 
 ## Video Demo
-[Link to video](https://drive.google.com/file/d/1K3FgGDeIz3Paf7goxYIEj5CJ_icxaDjO/view?usp=drive_link)
+[Link to video](https://drive.google.com/file/d/1cMRScVjQr5iMb6Yn7OVYrKOr9FPrF-Iv/view?usp=sharing)
 
